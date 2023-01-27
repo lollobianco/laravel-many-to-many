@@ -21,10 +21,10 @@
           <div class="d-flex justify-content-between">
 
             <div>
-              <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Show Post</a>
+              <a href="{{ route('admin.posts.show', $post->id) }}" class="btn text-white btn-outline-primary">Show Post</a>
             </div>
             <div>
-              <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning">Edit Post</a>
+              <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-outline-warning">Edit Post</a>
             </div>
 
             <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
@@ -32,7 +32,7 @@
               @csrf
               @method('DELETE')
 
-              <button type="submit" class="btn btn-danger">Delete Post</button></a>
+              <button type="submit" class="btn btn-outline-danger">Delete Post</button></a>
 
             </form>
 
