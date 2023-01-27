@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 Use App\Models\Post;
 Use App\Models\Category;
+Use App\Models\Tag;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +21,7 @@ class PostController extends Controller
     {
         $data = [
 
-            'posts' => Post::with('category')->paginate(10)
+            'posts' => Post::with('category', 'tags')->paginate(10)
 
         ];
 
@@ -79,8 +80,9 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $categories = Category::All();
+        $tags = Tag::All();
 
-        return view('admin.post.edit', compact('post', 'categories'));
+        return view('admin.post.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -94,8 +96,21 @@ class PostController extends Controller
     {
         $data = $request->all();
         $post = Post::findOrFail($id);
+        $request->validate(
+            [
+                'title' => 'required|max:50'
+            ]
+        );
+
         $post->update($data);
-        return redirect()->route('admin.posts.show', $post->id);
+
+        if (array_key_exists('tags', $data)) {
+            $post->tags()->sync($data['tags']);
+        } else {
+            $post->tags()->sync([]);
+        }
+
+        return redirect()->route('admin.posts.show', $post->id)->with('success');
     }
 
     /**
