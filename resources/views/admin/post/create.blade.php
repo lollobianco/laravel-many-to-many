@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
   <div class="container p-5 text-white">
 
     <h1 class="text-center p-4">Create Post</h1>
@@ -30,10 +29,22 @@
         <label class="form-label">Category</label>
         <select class="form-control w-100 mb-3" name="category_id">
           <option selected>Select a Category</option>
-          @foreach ($categories as $category)    
-            <option value="{{$category->id}}">{{$category->name}}</option>
+          @foreach ($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
           @endforeach
         </select>
+      </div>
+
+      <label class="form-label form-check-label mb-2">Tags</label>
+      <div class="d-flex mb-3">
+
+        @foreach ($tags as $tag)
+          <div class="mr-4">
+            <input type="checkbox" class="check" name="tags[]" value="{{ $tag->id }}">
+            {{ $tag->name }}
+          </div>
+        @endforeach
+
       </div>
 
       <button type="submit" class="btn btn-primary">Create Post</button>
@@ -41,5 +52,4 @@
     </form>
 
   </div>
-
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="container d-flex flex-column align-items-center text-white">
+  <div class="container d-flex flex-column text-white">
 
     <h2 class="my-4">{{ $post->title }}</h2>
 
@@ -17,6 +17,23 @@
     </div>
 
     <p>{{ $post->body }}</p>
+
+  </div>
+
+  <div class="container d-flex">
+
+    <div>
+      <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-outline-warning mr-2">Edit Post</a>
+    </div>
+
+    <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
+
+      @csrf
+      @method('DELETE')
+
+      <button type="submit" class="btn btn-outline-danger">Delete Post</button>
+
+    </form>
 
   </div>
 @endsection

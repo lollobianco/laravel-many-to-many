@@ -38,15 +38,15 @@
         </select>
       </div>
 
-      <div class="mb-3">
-        <label class="form-label">Tags</label>
+      <label class="form-label form-check-label mb-2">Tags</label>
+      <div class="d-flex mb-3">
 
         @foreach ($tags as $tag)
-          <label for="">
+          <div class="mr-4">
             <input type="checkbox" name="tags[]" value="{{ $tag->id }}"
               {{ $post->tags->contains($tag) ? 'checked' : '' }}>
             {{ $tag->name }}
-          </label>
+          </div>
         @endforeach
 
       </div>

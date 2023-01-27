@@ -36,8 +36,9 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::All();
+        $tags = Tag::All();
 
-        return view('admin.post.create', compact('categories'));
+        return view('admin.post.create', compact('categories', 'tags'));
     }
 
     /**
@@ -50,11 +51,25 @@ class PostController extends Controller
     {
         $data = $request->all();
 
+        $request->validate(
+            [
+                'title' => 'required|max:50'
+            ]
+        );
+
+
+
         $new_post = new Post();
         $new_post->fill($data);
         $new_post->save();
 
-        return redirect()->route('admin.posts.show', $new_post->id);
+        //controllo dopo aver fatto l'array prodotta dalla checkbox nella create
+
+        if (array_key_exists('tags', $data)) {
+            $new_post->tags()->sync($data['tags']);
+        }
+
+        return redirect()->route('admin.posts.show', ['post' => $new_post->id]);
     }
 
     /**
@@ -122,6 +137,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
+        $post->tags()->sync([]);
         $post->delete();
         return redirect()->route('admin.posts.index');
     }
