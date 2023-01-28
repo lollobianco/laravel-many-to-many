@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+  Show: {{$post->title}}
+@endsection
+
 @section('content')
   <div class="container d-flex flex-column text-white">
 

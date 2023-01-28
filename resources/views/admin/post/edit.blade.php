@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
+@section('title')
+  Edit: {{$post->title}}
+@endsection
+
 @section('content')
-  <div class="container p-5 text-white">
+  <div class="container text-white">
 
     <h1 class="text-center p-4">Modify Post</h1>
 
@@ -11,7 +15,7 @@
       @method('PUT')
 
       <div class="mb-3">
-        <label class="form-label">Title</label>
+        <label class="form-label">Title:</label>
         <input name="title" value="{{ $post->title }}" type="text"
           class="form-control @error('title') is-invalid @enderror">
         @error('title')
@@ -20,7 +24,7 @@
       </div>
 
       <div class="mb-3">
-        <label class="form-label">Description</label>
+        <label class="form-label">Description:</label>
         <textarea name="body" class="form-control @error('body') is-invalid @enderror">
           {{ $post->body }}
         </textarea>
@@ -30,7 +34,7 @@
       </div>
 
       <div>
-        <label class="form-label">Category</label>
+        <label class="form-label">Category:</label>
         <select class="form-control w-100 mb-3" name="category_id">
           @foreach ($categories as $category)
             <option value="{{ $category->id }}" {{ $category->id == old('category_id', $post->category_id) ? 'selected' : '' }}>{{ $category->name }}</option>
@@ -38,14 +42,16 @@
         </select>
       </div>
 
-      <label class="form-label form-check-label mb-2">Tags</label>
-      <div class="d-flex mb-3">
+      <label class="form-label form-check-label mb-2">Tags:</label>
+
+      <div class="d-flex mb-4">
 
         @foreach ($tags as $tag)
-          <div class="mr-4">
-            <input type="checkbox" name="tags[]" value="{{ $tag->id }}"
-              {{ $post->tags->contains($tag) ? 'checked' : '' }}>
-            {{ $tag->name }}
+          <div class="cat action btn btn-outline-light p-0 mr-2">
+            <label>
+              <input type="checkbox" name="tags[]" value="{{ $tag->id }}" {{ $post->tags->contains($tag) ? 'checked' : '' }}>
+                <span>{{ $tag->name }}</span>
+            </label>
           </div>
         @endforeach
 

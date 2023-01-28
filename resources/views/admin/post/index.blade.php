@@ -1,11 +1,8 @@
 @extends('layouts.app')
+@section('title', 'All recipes')
 
 @section('content')
   <div class="container d-flex flex-column align-items-center">
-
-    <a class="btn btn-primary m-5" href="{{ route('admin.posts.create') }}">
-      <h4 class="m-0 p-1">Create new Post</h4>
-    </a>
 
     @foreach ($posts as $post)
       <div class="card mb-4 bg-secondary text-white" style="width: 28rem;">
@@ -30,14 +27,17 @@
           @endif
 
 
-          <div class="d-flex justify-content-between">
+          <div class="d-flex">
 
             <div>
-              <a href="{{ route('admin.posts.show', $post->id) }}" class="btn text-white btn-outline-primary">Show
-                Post</a>
+              <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary rounded-circle mr-3">
+                <i class="fa-solid fa-book"></i>
+              </a>
             </div>
             <div>
-              <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-outline-warning">Edit Post</a>
+              <a class="btn btn-warning rounded-circle mr-3" href="{{ route('admin.posts.edit', $post->id) }}">
+                <i class="fa-solid fa-pen"></i>
+              </a>
             </div>
 
             <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
@@ -45,7 +45,9 @@
               @csrf
               @method('DELETE')
 
-              <button type="submit" class="btn btn-outline-danger">Delete Post</button>
+              <a class="btn btn-danger rounded-circle mr-3">
+                <i class="fa-solid fa-trash-can"></i>
+              </a>
 
             </form>
 

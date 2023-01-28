@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="container p-5 text-white">
+  <div class="container text-white">
 
     <h1 class="text-center p-4">Create Post</h1>
 
@@ -36,16 +36,20 @@
       </div>
 
       <label class="form-label form-check-label mb-2">Tags</label>
-      <div class="d-flex mb-3">
+
+      <div class="d-flex mb-4">
 
         @foreach ($tags as $tag)
-          <div class="mr-4">
-            <input type="checkbox" class="check" name="tags[]" value="{{ $tag->id }}">
-            {{ $tag->name }}
+          <div class="cat action btn btn-outline-light p-0 mr-2">
+            <label>
+              <input type="checkbox" name="tags[]" value="{{ $tag->id }}"><span>{{ $tag->name }}</span>
+            </label>
           </div>
         @endforeach
 
       </div>
+
+
 
       <button type="submit" class="btn btn-primary">Create Post</button>
 
