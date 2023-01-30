@@ -30,25 +30,23 @@
           <div class="d-flex">
 
             <div>
-              <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary rounded-circle mr-3">
-                <i class="fa-solid fa-book"></i>
+              <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary mr-3">
+                Show Post
               </a>
             </div>
             <div>
-              <a class="btn btn-warning rounded-circle mr-3" href="{{ route('admin.posts.edit', $post->id) }}">
-                <i class="fa-solid fa-pen"></i>
+              <a class="btn btn-warning mr-3" href="{{ route('admin.posts.edit', $post->id) }}">
+                Edit Post
               </a>
             </div>
 
-            <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
+            <form class="ml-auto" action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
 
               @csrf
               @method('DELETE')
-
-              <a class="btn btn-danger rounded-circle mr-3">
-                <i class="fa-solid fa-trash-can"></i>
-              </a>
-
+        
+              <button type="submit" class="btn btn-danger">Delete Post</button>
+        
             </form>
 
           </div>
