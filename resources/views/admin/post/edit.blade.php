@@ -57,6 +57,11 @@
 
       </div>
 
+      <div class="mb-4">
+        <label class="form-label form-check-label" for="">Image</label>
+        <input type="file" name="image" class="form-control-file">
+      </div>
+
       <button type="submit" class="btn btn-primary">Modify Post</button>
 
     </form>

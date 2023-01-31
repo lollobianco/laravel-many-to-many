@@ -8,6 +8,9 @@ Use App\Models\Post;
 Use App\Models\Category;
 Use App\Models\Tag;
 use Illuminate\Support\Facades\Storage;
+use App\Mail\SendNewMail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class PostController extends Controller
 {
@@ -76,6 +79,10 @@ class PostController extends Controller
             $new_post->tags()->sync($data['tags']);
         }
 
+        $mail = new SendNewMail($new_post);
+        $userEmail = Auth::user()->email;
+        Mail::to($userEmail)->send($mail);
+
         return redirect()->route('admin.posts.show', ['post' => $new_post->id]);
     }
 
@@ -124,14 +131,14 @@ class PostController extends Controller
             ]
         );
 
-        $post->update($data);
-
+        
         if (array_key_exists('tags', $data)) {
             $post->tags()->sync($data['tags']);
         } else {
             $post->tags()->sync([]);
         }
-
+        
+        $post->update($data);
         return redirect()->route('admin.posts.show', $post->id)->with('success');
     }
 
