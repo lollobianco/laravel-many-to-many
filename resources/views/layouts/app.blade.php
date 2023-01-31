@@ -33,7 +33,7 @@
           <i class="fa-solid fa-plus"></i>
         </a>
         <a class="navbar-brand" href="{{ url('/') }}">
-          {{ config('app.name', 'Laravel') }}
+          {{ config('app.name', 'BooleFood') }}
         </a>
         <div>
           <a href="{{ route('admin.posts.index') }}">All Posts</a>

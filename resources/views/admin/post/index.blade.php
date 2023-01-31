@@ -7,9 +7,15 @@
     @foreach ($posts as $post)
       <div class="mb-4 text-white d-flex">
 
-        <div class="rounded-left card-body col-4 bg-secondary">
-          <img src="{{asset("storage/$post->cover")}}" class="card-img-top rounded" alt="...">
+        @if (is_null($post->cover))
+        <div class="rounded-left card-body col-4 bg-secondary d-flex align-items-center justify-content-center">
+          <h2>No picture available</h2>
         </div>
+        @else
+        <div class="rounded-left card-body col-4 bg-secondary shadow-sm">
+          <img src="{{asset("storage/$post->cover")}}" class="card-img-top rounded shadow-lg" alt="...">
+        </div>
+        @endif
 
         <div class="rounded-right card-body col-5 bg-secondary">
           <h3 class="card-title">{{ $post->title }}</h3>
