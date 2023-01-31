@@ -2,12 +2,16 @@
 @section('title', 'All recipes')
 
 @section('content')
-  <div class="container d-flex flex-column align-items-center">
+  <div class="container">
 
     @foreach ($posts as $post)
-      <div class="card mb-4 bg-secondary text-white" style="width: 28rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
+      <div class="mb-4 text-white d-flex">
+
+        <div class="rounded-left card-body col-4 bg-secondary">
+          <img src="{{asset("storage/$post->cover")}}" class="card-img-top rounded" alt="...">
+        </div>
+
+        <div class="rounded-right card-body col-5 bg-secondary">
           <h3 class="card-title">{{ $post->title }}</h3>
 
           @foreach ($post->tags as $tag)
@@ -44,14 +48,15 @@
 
               @csrf
               @method('DELETE')
-        
+
               <button type="submit" class="btn btn-danger">Delete Post</button>
-        
+
             </form>
 
           </div>
 
         </div>
+
       </div>
     @endforeach
 

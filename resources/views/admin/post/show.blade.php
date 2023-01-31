@@ -11,6 +11,8 @@
 
     <h5 class="mb-4">{{ $post->category['name'] }}</h5>
 
+    <img src="{{asset("storage/$post->cover")}}" alt="">
+
     <div>
       @foreach ($post->tags as $tag)
         @if (is_null($tag->name))

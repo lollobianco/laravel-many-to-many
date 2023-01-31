@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 Use App\Models\Post;
 Use App\Models\Category;
 Use App\Models\Tag;
-
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -21,7 +20,7 @@ class PostController extends Controller
     {
         $data = [
 
-            'posts' => Post::with('category', 'tags')->paginate(10)
+            'posts' => Post::with('category', 'tags', )->paginate(10)
 
         ];
 
@@ -60,6 +59,14 @@ class PostController extends Controller
 
 
         $new_post = new Post();
+
+        if(array_key_exists('image', $data)){
+
+            $cover_url = Storage::put('post_covers', $data['image']);
+            $data['cover'] = $cover_url;
+
+        }
+
         $new_post->fill($data);
         $new_post->save();
 

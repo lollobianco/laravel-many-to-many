@@ -5,7 +5,7 @@
 
     <h1 class="text-center p-4">Create Post</h1>
 
-    <form method="POST" action="{{ route('admin.posts.store') }}">
+    <form method="POST" action="{{ route('admin.posts.store') }}" enctype="multipart/form-data">
 
       @csrf
 
@@ -47,6 +47,11 @@
           </div>
         @endforeach
 
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label form-check-label" for="">Image</label>
+        <input type="file" name="image" class="form-control-file">
       </div>
 
 
