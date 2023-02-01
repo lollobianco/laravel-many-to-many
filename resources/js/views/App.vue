@@ -1,14 +1,39 @@
 <template>
   <div>
-    <h1>Welcome in Guest Home</h1>
+
+    <h1>Welcome in BooleFood</h1>
+    <PostsList/>
+
+    
   </div>
 </template>
 
 <script>
+import PostsList from '../components/posts/PostsList.vue';
+
 export default {
   name: "App",
   components: {
-    //Qui inseriamo i futuri componenti per questa views
+
+    PostsList,
+    
   },
+  data(){
+    return{
+
+     
+
+    }
+  },
+  mounted(){
+
+    
+
+  },
+  methods: {
+
+    
+
+  }
 };
 </script>
