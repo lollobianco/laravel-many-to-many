@@ -59,14 +59,13 @@ class PostController extends Controller
             ]
         );
 
-
-
         $new_post = new Post();
 
-        if(array_key_exists('image', $data)){
+        if(array_key_exists('cover', $data)){
 
-            $cover_url = Storage::put('post_covers', $data['image']);
+            $cover_url = Storage::put('post_images', $data['cover']);
             $data['cover'] = $cover_url;
+            //  dd($data);
 
         }
 

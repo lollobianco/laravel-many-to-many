@@ -13,7 +13,7 @@
         </div>
         @else
         <div class="rounded-left card-body bg-secondary col-4 shadow-sm d-flex align-items-center justify-content-center">
-          <img src="{{asset("storage/$post->cover")}}" class="card-img-top rounded p-1 bg-dark shadow-lg" alt="...">
+          <img src="{{asset("storage/$post->cover")}}" class="card-img-top rounded p-1 bg-light shadow-lg" alt="...">
         </div>
         @endif
 
